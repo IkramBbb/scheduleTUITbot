@@ -133,8 +133,9 @@ async def send_rasp(message: types.Message) -> None:
 
 @dp.message_handler(content_types=['document'])
 async def upload_document(message: types.Message):
-    await message.document.download(destination_file='Book2.xlsx')
-    await message.answer(text='Документ загружен')
+    if message.from_user.id == os.getenv('ADMIN_ID'):
+        await message.document.download(destination_file='Book2.xlsx')
+        await message.answer(text='Документ загружен')
 
 
 @dp.message_handler(commands='go')
