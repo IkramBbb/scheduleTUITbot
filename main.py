@@ -107,6 +107,16 @@ async def load_lang(message: types.CallbackQuery, state: FSMContext) -> None:
 
 @dp.message_handler(Text(equals='Текущая пара'))
 async def send_rasp(message: types.Message) -> None:
+    if datetime.now().weekday() == 5:
+        await message.answer('Сегодня же суббота пары нет')
+        return
+    if datetime.now().weekday() == 6:
+        await message.answer(f'Сегодня же воскресенье пары нет')
+        return
+
+
+@dp.message_handler(Text(equals='Пары на сегодня'))
+async def send_rasp(message: types.Message) -> None:
     # if datetime.now().weekday() == 5:
     #     await message.answer('Сегодня пар нет')
     #     return
@@ -116,19 +126,6 @@ async def send_rasp(message: types.Message) -> None:
     data = await select_data(user_id=message.from_user.id)
     result = search_coordinate(data=data)
     await message.answer(text=result, parse_mode='HTML')
-
-
-@dp.message_handler(Text(equals='Пары на сегодня'))
-async def send_rasp(message: types.Message) -> None:
-    if datetime.now().weekday() == 5:
-        await message.answer('Сегодня пар нет')
-        return
-    if datetime.now().weekday() == 6:
-        await message.answer(f'Сегодня пар нет')
-        return
-    await message.answer(f'Сегодня пар нет')
-    await message.answer(f'Сегодня пар нет')
-    await message.answer(f'Сегодня пар нет')
 
 
 @dp.message_handler(content_types=['document'])

@@ -20,7 +20,7 @@ def search_coordinate(data):
     faculty = data[1]
     time = datetime.now().strftime('%H:%M')
     result = ''
-    for i in range(27, 34, 2):
+    for i in range(3, 10, 2):
         if sheet[chr(coordinate_x[language][faculty]) + str(i)].value is not None:
             result += f'{sheet["A"+str(i)].value} - Пара\n' \
                       f'<b>Начало:</b> {start_and_end[sheet["A"+str(i)].value]["start"]}\n' \
