@@ -19,8 +19,9 @@ def search_coordinate(data):
     language = data[0]
     faculty = data[1]
     time = datetime.now().strftime('%H:%M')
+    days_week = datetime.now().weekday() * 2
     result = ''
-    for i in range(3, 10, 2):
+    for i in range(3+days_week, 10+days_week, 2):
         if sheet[chr(coordinate_x[language][faculty]) + str(i)].value is not None:
             result += f'{sheet["A"+str(i)].value} - Пара\n' \
                       f'<b>Начало:</b> {start_and_end[sheet["A"+str(i)].value]["start"]}\n' \
@@ -30,3 +31,8 @@ def search_coordinate(data):
                       f'<b>Конец:</b> {start_and_end[sheet["A"+str(i)].value]["end"]}\n' \
                       f'------------------------------\n'
     return result
+
+
+def current_couple():
+    pass
+
