@@ -19,7 +19,7 @@ def search_coordinate(data):
     language = data[0]
     faculty = data[1]
     time = datetime.now().strftime('%H:%M')
-    days_week = datetime.now().weekday() * 2
+    days_week = datetime.now().weekday() * 8
     result = ''
     for i in range(3+days_week, 10+days_week, 2):
         if sheet[chr(coordinate_x[language][faculty]) + str(i)].value is not None:
