@@ -2,16 +2,25 @@
 ## Расписание уроков
 ----
 HEAD -- это голова.  
-Коммит -- это всему голова.  
+Коммит -- 
+```bash
+git init
+git add .
+git commit -m 'message'
+git push
+```
 Статусы файлов:  
 
 ```mermaid
 graph LR;
-  untracked -- "git add" --> staged;
-  staged    -- "???"     --> tracked/comitted;
+  untracked -- "git add" --> staged --> B;
+  staged --> C;
+  staged    -- "???"     --> tracked/comitted --> B;
 
 %% стрелка без текста для примера: 
   A --> B;
+  C --> A;
+  C --> tracked/comitted;
 ``` 
 ```bash
 pip install aiogram==2.25.1

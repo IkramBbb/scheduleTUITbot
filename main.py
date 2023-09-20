@@ -117,12 +117,12 @@ async def send_rasp(message: types.Message) -> None:
 
 @dp.message_handler(Text(equals='Пары на сегодня'))
 async def send_rasp(message: types.Message) -> None:
-    # if datetime.now().weekday() == 5:
-    #     await message.answer('Сегодня пар нет')
-    #     return
-    # if datetime.now().weekday() == 6:
-    #     await message.answer(f'Сегодня пар нет')
-    #     return
+    if datetime.now().weekday() == 5:
+        await message.answer('Сегодня пар нет')
+        return
+    if datetime.now().weekday() == 6:
+        await message.answer(f'Сегодня пар нет')
+        return
     data = await select_data(user_id=message.from_user.id)
     result = search_coordinate(data=data)
     await message.answer(text=result, parse_mode='HTML')
@@ -131,7 +131,7 @@ async def send_rasp(message: types.Message) -> None:
 @dp.message_handler(content_types=['document'])
 async def upload_document(message: types.Message):
     if message.from_user.id == os.getenv('ADMIN_ID'):
-        await message.document.download(destination_file='Book2.xlsx')
+        await message.document.download(destination_file='Book1.xlsx')
         await message.answer(text='Документ загружен')
 
 
@@ -143,8 +143,7 @@ async def go(message: types.Message):
                            payload='invoice',
                            provider_token='398062629:TEST:999999999_F91D8F69C042267444B74CC0B3C747757EB0E065',
                            currency='UZS',
-                           prices=[types.LabeledPrice(label='Курс', amount=10000)]
-                           )
+                           prices=[types.LabeledPrice(label='Курс', amount=10000)])
 
 
 if __name__ == '__main__':
